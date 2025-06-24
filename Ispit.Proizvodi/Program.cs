@@ -3,10 +3,10 @@ using Ispit.Proizvodi.Klase;
 
 namespace Ispit.Proizvodi
 {
-    internal class Program
+    public class Program
     {
         public delegate void PocniPisatiIspit(DateTime datumVrijeme);
-        
+
         static void Main(string[] args)
         {
             Predavac predavac = new Predavac();
@@ -53,14 +53,15 @@ namespace Ispit.Proizvodi
 
         }
 
-        private static void Predavac_Ispit(object? sender, DateTime vrijeme)
+        private static void Predavac_Ispit(DateTime vrijeme)
         {
-            Console.WriteLine();
+            Console.WriteLine($"Vrijeme početka ispita: {vrijeme}\n");
         }
 
-        private static void OdabraniPolaznik_IspitZavrsen(object? sender, Polaznik polaznik)
+        private static void OdabraniPolaznik_IspitZavrsen(Polaznik polaznik)
         {
             Console.WriteLine($"Ispit zaprimljen od polaznika: {polaznik.ImePrezime}\n");
         }
+
     }
 }

@@ -9,7 +9,7 @@ namespace Ispit.Proizvodi.Klase
     public class Polaznik
     {
         public delegate void PredajIspit(Polaznik polaznik);
-        public event EventHandler<Polaznik>? IspitZavrsen;
+        public event PredajIspit? IspitZavrsen;
         
         public string? ImePrezime { get; set; }
 
@@ -27,7 +27,7 @@ namespace Ispit.Proizvodi.Klase
         {
             Console.WriteLine($"\nPolaznik: {ImePrezime} je predao odgovore\n");
 
-            IspitZavrsen?.Invoke(this, this);
+            IspitZavrsen?.Invoke(this);
         }
     }
 }
