@@ -11,7 +11,7 @@ namespace Ispit.Proizvodi
         {
             Predavac predavac = new Predavac();
 
-            var listaPolaznika = new List<Polaznik>                                 // instanciranje 8 polaznika putem liste polaznika
+            var listaPolaznika = new List<Polaznik>                                    // instanciranje 8 polaznika putem liste polaznika
             {
                 new Polaznik("Tereza Kesovija"),
                 new Polaznik("Johnny Stulic"),
@@ -23,9 +23,9 @@ namespace Ispit.Proizvodi
                 new Polaznik("Dino Jelusic")
             };
 
-            ShuffleListEkstenzija.Shuffle(listaPolaznika);                         // mijesanje clanova liste polaznika
+            ShuffleListEkstenzija.Shuffle(listaPolaznika);                            // mijesanje clanova liste polaznika
 
-            List<Polaznik> listaNasumicnihPolaznika = new List<Polaznik>()         // kreiranje nasumicne liste i ubacivanje 4 clana
+            List<Polaznik> listaNasumicnihPolaznika = new List<Polaznik>()            // kreiranje nasumicne liste i ubacivanje 4 clana
             {
                 listaPolaznika[0],
                 listaPolaznika[1],
@@ -33,23 +33,20 @@ namespace Ispit.Proizvodi
                 listaPolaznika[3]
             };
 
-            predavac.Ispit += Predavac_Ispit;                                     // pretplata na event handler predavaca
+            predavac.Ispit += Predavac_Ispit;                                         // pretplata na event handler predavaca
             predavac.ZvoniZvono();
 
-            foreach (Polaznik polaznik in listaNasumicnihPolaznika)               // iteracija kroz polaznike i ispis vremena pocetka
-            {
-                polaznik.OdgovoriNaPitanja(DateTime.Now);
-            }
+            listaNasumicnihPolaznika.ForEach(x => x.OdgovoriNaPitanja(DateTime.Now)); // lambda izraz , iteracija kroz polaznike i ispis vremena pocetka za svakoga
 
             var odabraniPolaznik = listaNasumicnihPolaznika[0];
 
-            odabraniPolaznik.IspitZavrsen += OdabraniPolaznik_IspitZavrsen;       // pretplata na event handler polaznika
+            odabraniPolaznik.IspitZavrsen += OdabraniPolaznik_IspitZavrsen;           // pretplata na event handler polaznika
             odabraniPolaznik.PredajOdgovorenaPitanja();
 
-            predavac.IspitZaprimljen(odabraniPolaznik);                           // potvrda predavaca da je ispit zaprimljen
+            predavac.IspitZaprimljen(odabraniPolaznik);                               // potvrda predavaca da je ispit zaprimljen
 
-            predavac.Ispit -= Predavac_Ispit;                                     // odplata
-            odabraniPolaznik.IspitZavrsen -= OdabraniPolaznik_IspitZavrsen;       // odplata
+            predavac.Ispit -= Predavac_Ispit;                                         // odplata
+            odabraniPolaznik.IspitZavrsen -= OdabraniPolaznik_IspitZavrsen;           // odplata
 
         }
 
