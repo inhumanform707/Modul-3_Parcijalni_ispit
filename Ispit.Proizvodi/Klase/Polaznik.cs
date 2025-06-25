@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ispit.Proizvodi.Klase;
 
+public delegate void PredajIspit(Polaznik polaznik);
+
 public class Polaznik
 {
-    public delegate void PredajIspit(Polaznik polaznik);
+    
     public event PredajIspit? IspitZavrsen;
     
     public string? ImePrezime { get; set; }
@@ -20,12 +22,12 @@ public class Polaznik
 
     public void OdgovoriNaPitanja(DateTime vrijemePocetka)
     {
-        Console.WriteLine($"Ime i prezime polaznika: {ImePrezime}, Datum i vrijeme pristupanja ispitu: {vrijemePocetka}");
+        Console.WriteLine($"Ime i prezime polaznika: {this.ImePrezime}, Datum i vrijeme pristupanja ispitu: {vrijemePocetka}");
     }
 
     public void PredajOdgovorenaPitanja()
     {
-        Console.WriteLine($"\nPolaznik: {ImePrezime} je predao odgovore\n");
+        Console.WriteLine($"\nPolaznik: {this.ImePrezime} je predao odgovore\n");
 
         IspitZavrsen?.Invoke(this);
     }
